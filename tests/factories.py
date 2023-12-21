@@ -32,3 +32,11 @@ class ProductFactory(factory.Factory):
 
     id = factory.Sequence(lambda n: n)
    ## Add code to create Fake Products 
+   
+  name = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.String(250), nullable=False)
+    price = db.Column(db.Numeric, nullable=False)
+    available = db.Column(db.Boolean(), nullable=False, default=True)
+    category = db.Column(
+        db.Enum(Category), nullable=False, server_default=(Category.UNKNOWN.name)
+    ) 
