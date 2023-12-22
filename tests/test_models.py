@@ -213,31 +213,29 @@ class TestProductModel(unittest.TestCase):
         products = ProductFactory.create_batch(5)
 
         # Use a for loop to iterate over the products list and call the create() method 
-        # on each product to save them 	to the database.
-        names_list = ["Hat", "Pants", "Shirt", "Apple", "Banana", "Pots", "Towels", "Ford", "Chevy", "Hammer", "Wrench"]
-        names_number = len(names_list)
+        # on each product to save them to the database.
 
-        for products in range(names_number):
-            product = Product(name=products)
-            
+        for x in range(5):
+            product_from_list = products[x] 
+            product_from_list.create()
 
         # Retrieve the name of the first product in the products list.
-      
+        name_first = products[0]
         
-
         # Use a list comprehension to filter the products based on their name and then 
         # use len() to calculate the length of the filtered list, and use the variable 
         # called count to hold the number of products that match the name.
         
         
-
         # Call the find_by_name() method on the Product class to retrieve 
         # products from the database that have the specified name.
-      
+        Product.find_by_name("Glass")
 
         # Assert if the count of the found products matches the expected count.
         found_products = Product.all()
-        self.assertEqual(len(found_products), names_number)
+        self.assertEqual(len(found_products), 5)
 
         # Use a for loop to iterate over the found products and assert that 
         # each product's name matches the expected 	name, to ensure that all the retrieved products have the correct name.
+
+        
