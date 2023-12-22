@@ -104,3 +104,54 @@ class TestProductModel(unittest.TestCase):
     #
     # ADD YOUR TEST CASES HERE
     #
+    def test_read_a_product(self):
+        """It should Read a Product"""
+        product = ProductFactory()
+        # Set the ID of the product object to None and then call the 
+        # create() method on the product.
+        product.id = None
+        product.create()
+
+        # Assert that the ID of the product object is not None 
+        # after calling the create() method.
+        self.assertIsNotNone(product.id)
+
+        # Fetch the product back from the system using the product ID 
+        # and store it in found_product
+        found_product = Product.find(product.id)
+
+        # Assert that the properties of the found_product 
+        # match with the properties of the original product object, such as id, name, description and price.
+
+        self.assertEqual(found_product.name, product.name)
+        self.assertEqual(found_product.description, product.description)
+        self.assertEqual(Decimal(found_product.price), product.price)
+        
+    def test_update_a_product(self):
+        """It should Update a Product"""
+        product = ProductFactory()
+        # Set the ID of the product object to None and then call the create() method on the product.
+        product.id = None
+        product.create()
+
+        # Log the product object again after it has been created to verify 
+        # that the product was created with the desired properties.
+        logger.info("Saving %s", self.name)
+        # Assert that the ID of the product object is not None after calling the create() method.
+        self.assertIsNotNone(product.id)
+
+        # Update the product in the system with the new property values using the update() method.
+        product.name = "Wheel"
+        product.update()
+
+        # Assert that the id is same as the original id but description property of 
+        # the product object has been updated correctly after calling the update() method.
+        
+
+        # Fetch all the product back from the system.
+        
+        # Assert the length of the products list is equal to 1 to verify that after updating the product, there is only one product in the system.
+        
+        # Assert that the fetched product has id same as the original id.
+        
+        # Assert that the fetched product has the updated description.
